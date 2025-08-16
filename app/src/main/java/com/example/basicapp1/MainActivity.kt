@@ -20,6 +20,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.basicapp1.ui.theme.BasicApp1Theme
 
 class MainActivity : ComponentActivity() {
@@ -28,11 +31,26 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BasicApp1Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    GreetingCard(
-                        name = "Koushik",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                val navController = rememberNavController()
+                
+                NavHost(navController = navController, startDestination = "main") {
+                    composable("main") {
+                        GreetingCard(
+                            name = "Koushik",
+                            onGetStartedClick = {
+                                navController.navigate("signup")
+                            },
+                            modifier = Modifier.fillMaxSize()
+                        )
+                    }
+                    composable("signup") {
+                        SignUpScreen(
+                            onNavigateBack = {
+                                navController.popBackStack()
+                            },
+                            modifier = Modifier.fillMaxSize()
+                        )
+                    }
                 }
             }
         }
@@ -40,7 +58,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun GreetingCard(name: String, modifier: Modifier = Modifier) {
+fun GreetingCard(
+    name: String, 
+    onGetStartedClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
     val gradientBrush = Brush.verticalGradient(
         colors = listOf(
             Color(0xFF667eea),
@@ -98,7 +120,7 @@ fun GreetingCard(name: String, modifier: Modifier = Modifier) {
                 
                 // Action Button
                 Button(
-                    onClick = { /* Add action here */ },
+                    onClick = onGetStartedClick,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(50.dp),
@@ -169,6 +191,9 @@ fun InfoItem(icon: String, title: String, subtitle: String) {
 @Composable
 fun GreetingCardPreview() {
     BasicApp1Theme {
-        GreetingCard("Koushik")
+        GreetingCard(
+            name = "Koushik",
+            onGetStartedClick = {}
+        )
     }
 }

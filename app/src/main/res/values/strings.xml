@@ -3,4 +3,15 @@
     <string name="greeting_title">Hello Koushik!</string>
     <string name="greeting_subtitle">Welcome to your Basic App</string>
     <string name="get_started_button">Get Started</string>
+    
+    <!-- Sign Up Screen -->
+    <string name="signup_title">Create Account</string>
+    <string name="first_name_hint">First Name</string>
+    <string name="last_name_hint">Last Name</string>
+    <string name="mobile_number_hint">Mobile Number</string>
+    <string name="signup_button">Sign Up</string>
+    <string name="old_user_message">Old User</string>
+    <string name="user_registered_successfully">User registered successfully!</string>
+    <string name="please_fill_all_fields">Please fill all fields</string>
+    <string name="invalid_mobile_number">Please enter a valid mobile number</string>
 </resources>
