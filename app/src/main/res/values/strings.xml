@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">Basic app 1</string>
+    <string name="app_name">Koushik\'s Greeting App</string>
+    <string name="greeting_title">Hello Koushik!</string>
+    <string name="greeting_subtitle">Welcome to your Basic App</string>
+    <string name="get_started_button">Get Started</string>
 </resources>
